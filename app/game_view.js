@@ -3,6 +3,7 @@ var GameView = (function(){
 	var incrementOneGenerationButtonId = 'increment_one_generation';
 	var incrementManyGenerationsButtonId = 'increment_many_generations';
 	var togglePlayButtonId = 'toggle_play';
+	var generationId = 'generation';
 	var _this;
 
 	var GameView = function(game){
@@ -12,16 +13,8 @@ var GameView = (function(){
 	}
 
 	GameView.prototype.render = function(){
-		var cell, element;
-
-		for(var i = 0; i < this.game.cells.length; i++){
-			for(var j = 0; j < this.game.cells[i].length; j++){
-				cell = game.cells[i][j];
-				element = this.table.rows[i].cells[j];
-
-				renderCell(cell, element);
-			}
-		}
+		renderCells();
+		renderGenerationNumber();
 	}
 
 	GameView.prototype.onIncrementOneGenerationButtonClick = function(callback){
@@ -42,7 +35,7 @@ var GameView = (function(){
 		var button = document.getElementById(togglePlayButtonId);
 		button.addEventListener('click', function(event){
 			event.preventDefault();
-			
+
 			var text = button.innerHTML;
 			if(text == 'Pause')
 				button.innerHTML = 'Play'
@@ -77,11 +70,28 @@ var GameView = (function(){
 		});
 	}
 
+	function renderCells(){
+		var cell, element;
+
+		for(var i = 0; i < _this.game.cells.length; i++){
+			for(var j = 0; j < _this.game.cells[i].length; j++){
+				cell = game.cells[i][j];
+				element = _this.table.rows[i].cells[j];
+
+				renderCell(cell, element);
+			}
+		}
+	}
+
 	function renderCell(cell, element){
 		if(cell.alive)
 			element.classList.add('alive')
 		else
 			element.classList.remove('alive')
+	}
+
+	function renderGenerationNumber(){
+		document.getElementById(generationId).innerHTML = _this.game.generation;
 	}
 
 	return GameView;

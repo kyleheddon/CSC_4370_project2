@@ -2,6 +2,7 @@ var Game = (function(){
 	var _this;
 	var Game = function(data){
 		this.cells = constructCells(data);
+		this.generation = 0;
 		_this = this;
 	}
 
@@ -19,6 +20,7 @@ var Game = (function(){
 				setNewCellState(cells[i][j], previousGeneration);
 			}
 		}
+		_this.generation += 1;
 	}
 
 	function constructCells(data){
@@ -40,9 +42,6 @@ var Game = (function(){
 	}
 
 	function setNewCellState(cell, previousGeneration){
-		if(cell.alive){
-			console.log(cell);
-		}
 		var numberOfLivingNeighbors = calculateNumberOfLivingNeighbors(cell, previousGeneration);
 
 		if(cell.alive && (numberOfLivingNeighbors < 2 || numberOfLivingNeighbors > 3)){
@@ -66,8 +65,7 @@ var Game = (function(){
 	}
 
 	function getNeighboringCells(cell, previousGeneration){
-
-		var neighboringCells = [
+		return [
 			getRelativeCell(cell, previousGeneration, -1, -1),
 			getRelativeCell(cell, previousGeneration, -1, 0),
 			getRelativeCell(cell, previousGeneration, -1, 1),
@@ -77,8 +75,6 @@ var Game = (function(){
 			getRelativeCell(cell, previousGeneration, 1, 0),
 			getRelativeCell(cell, previousGeneration, 1, 1)
 		];
-
-		return neighboringCells;
 	}
 
 	function getRelativeCell(cell, previousGeneration, yChange, xChange){
