@@ -1,0 +1,13 @@
+#game {
+	border-collapse: collapse;
+}
+
+#game td {
+	width: 5px;
+	height: 5px;
+	border: 1px solid gray;
+}
+
+#game td.alive {
+	background-color: #000;
+}
