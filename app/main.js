@@ -47,3 +47,16 @@ timeline.onNewFrame(function(){
 gameView.onTogglePlayButtonClick(function(){
 	timeline.togglePlay();
 });
+
+gameView.onRandomizeButtonClick(function(){
+	gameData = createRandomData();
+	game = new Game(gameData);
+	gameView.game = game;
+	gameView.render();
+});
+
+
+gameView.onResetButtonClick(function(){
+	game.reset();
+	gameView.render();
+});

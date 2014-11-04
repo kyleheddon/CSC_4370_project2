@@ -4,6 +4,8 @@ var GameView = (function(){
 	var incrementManyGenerationsButtonId = 'increment_many_generations';
 	var togglePlayButtonId = 'toggle_play';
 	var generationId = 'generation';
+	var resetButtonId = 'reset';
+	var randomButtonId = 'init_random_cell';
 	var _this;
 
 	var GameView = function(game){
@@ -42,6 +44,20 @@ var GameView = (function(){
 			else
 				button.innerHTML = 'Pause'
 
+			callback();
+		});
+	}
+
+	GameView.prototype.onRandomizeButtonClick = function(callback){
+		document.getElementById(randomButtonId).addEventListener('click', function(event){
+			event.preventDefault();
+			callback();
+		});
+	}
+
+	GameView.prototype.onResetButtonClick = function(callback){
+		document.getElementById(resetButtonId).addEventListener('click', function(event){
+			event.preventDefault();
 			callback();
 		});
 	}

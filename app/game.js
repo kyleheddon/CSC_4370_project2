@@ -12,6 +12,15 @@ var Game = (function(){
 		}
 	}
 
+	Game.prototype.reset = function(){
+		for(var i = 0; i < this.cells.length; i++){
+			for(var j = 0; j < this.cells[i].length; j++){
+				this.cells[i][j].alive = false;
+			}
+		}
+		this.generation = 0;
+	}
+
 	function incrementGeneration(){
 		var cells = _this.cells;
 		var previousGeneration = deepCopy(cells);
