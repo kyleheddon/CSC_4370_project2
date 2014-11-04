@@ -3,30 +3,13 @@ var NUMBER_OF_COLUMNS = 150;
 var PERCENT_CHANCE_OF_STARTING_ALIVE = 50;
 var FRAMES_PER_SECOND = 30;
 
-function createRandomData(){
-	var gameData = [];
-	var percentChanceOfBeingAlive = PERCENT_CHANCE_OF_STARTING_ALIVE / 100;
-
-	for(var i = 0; i < NUMBER_OF_ROWS; i++){
-		gameData[i] = [];
-		for(var j = 0; j < NUMBER_OF_COLUMNS; j++){
-			if(Math.random() <= percentChanceOfBeingAlive)
-				gameData[i][j] = 1;
-			else
-				gameData[i][j] = 0;
-		}
-	}
-	return gameData;
-}
-
 function renderIncrementedGenerations(game, gameView, generations){
 	game.incrementGenerations(generations);
 	gameView.render();
 }
 
 
-var gameData = createRandomData();
-var game = new Game(gameData);
+var game = new Game(NUMBER_OF_ROWS, NUMBER_OF_COLUMNS, PERCENT_CHANCE_OF_STARTING_ALIVE);
 var gameView = new GameView(game);
 var timeline = new Timeline(FRAMES_PER_SECOND);
 
@@ -49,9 +32,7 @@ gameView.onTogglePlayButtonClick(function(){
 });
 
 gameView.onRandomizeButtonClick(function(){
-	gameData = createRandomData();
-	game = new Game(gameData);
-	gameView.game = game;
+	game.randomize();
 	gameView.render();
 });
 

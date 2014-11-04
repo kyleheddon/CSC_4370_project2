@@ -1,15 +1,23 @@
 var Game = (function(){
-	var _this;
-	var Game = function(data){
-		this.cells = constructCells(data);
-		this.generation = 0;
+	var _this, numberOfRows, numberOfColumns, percentChanceOfStartingAlive;
+	var Game = function(numRows, numColumns, percentChanceAlive){
 		_this = this;
+		numberOfRows = numRows;
+		numberOfColumns = numColumns;
+		percentChanceOfStartingAlive = percentChanceAlive;
+		this.cells = constructRandomizedCells();
+		this.generation = 0;
 	}
 
 	Game.prototype.incrementGenerations = function(numberOfGenerations){
 		for(var i = 0; i < numberOfGenerations; i++){
 			incrementGeneration();
 		}
+	}
+
+	Game.prototype.randomize = function(){
+		this.cells = constructRandomizedCells();
+		this.generation = 0;
 	}
 
 	Game.prototype.reset = function(){
@@ -32,7 +40,8 @@ var Game = (function(){
 		_this.generation += 1;
 	}
 
-	function constructCells(data){
+	function constructRandomizedCells(){
+		var data = createRandomData();
 		var row, cell, cells = [];
 
 		for(var i = 0; i < data.length; i++){
@@ -44,6 +53,21 @@ var Game = (function(){
 			cells.push(row);
 		}
 		return cells;
+	}
+
+	function createRandomData(){
+		var gameData = [];
+
+		for(var i = 0; i < numberOfRows; i++){
+			gameData[i] = [];
+			for(var j = 0; j < numberOfColumns; j++){
+				if(Math.random() <= percentChanceOfStartingAlive / 100)
+					gameData[i][j] = 1;
+				else
+					gameData[i][j] = 0;
+			}
+		}
+		return gameData;
 	}
 
 	function deepCopy(cells){
