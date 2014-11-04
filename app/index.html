@@ -6,12 +6,20 @@
 		<meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
 	</head>
 	<body>
-		<h1>Game of Life</h1>
-		<table id="game"></table>
-		<button id="increment_one_generation">Increment 1 Generation</button>
-		<button id="increment_many_generations">Increment 23 Generations</button>
-		<button id="toggle_play">Play</button>
-		<h2>Generation <span id="generation">0</span></h2>
+		<h1 id="title">Game of Life</h1>
+		<div id="container">
+    		<div id="game-container">
+    			<div id="board">
+					<table id="game"></table>
+				</div>
+				<div id="pattern-control">
+					<button id="increment_one_generation">Increment 1 Generation</button>
+					<button id="increment_many_generations">Increment 23 Generations</button>
+					<button id="toggle_play">Play</button>
+				</div>
+			</div>
+			<h2>Generation <span id="generation">0</span></h2>
+		</div>
 	</body>
 	<script type="text/javascript" src="game.js"></script>
 	<script type="text/javascript" src="game_view.js"></script>
