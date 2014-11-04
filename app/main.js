@@ -1,13 +1,12 @@
 var NUMBER_OF_ROWS = 80;
 var NUMBER_OF_COLUMNS = 150;
-var PERCENT_CHANCE_OF_STARTING_ALIVE = 50;
+var PERCENT_CHANCE_OF_STARTING_ALIVE = 10;
 var FRAMES_PER_SECOND = 30;
 
 function renderIncrementedGenerations(game, gameView, generations){
 	game.incrementGenerations(generations);
 	gameView.render();
 }
-
 
 var game = new Game(NUMBER_OF_ROWS, NUMBER_OF_COLUMNS, PERCENT_CHANCE_OF_STARTING_ALIVE);
 var gameView = new GameView(game);
@@ -35,7 +34,6 @@ gameView.onRandomizeButtonClick(function(){
 	game.randomize();
 	gameView.render();
 });
-
 
 gameView.onResetButtonClick(function(){
 	game.reset();
