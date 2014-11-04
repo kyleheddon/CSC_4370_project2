@@ -1,6 +1,7 @@
 var NUMBER_OF_ROWS = 80;
 var NUMBER_OF_COLUMNS = 150;
 var PERCENT_CHANCE_OF_STARTING_ALIVE = 10;
+var FRAMES_PER_SECOND = 30;
 
 function createRandomData(){
 	var gameData = [];
@@ -19,7 +20,7 @@ function createRandomData(){
 }
 
 function renderIncrementedGenerations(game, gameView, generations){
-	game.incrementGenerations(1);
+	game.incrementGenerations(generations);
 	gameView.render();
 }
 
@@ -27,7 +28,7 @@ function renderIncrementedGenerations(game, gameView, generations){
 var gameData = createRandomData();
 var game = new Game(gameData);
 var gameView = new GameView(game);
-var timeline = new Timeline();
+var timeline = new Timeline(FRAMES_PER_SECOND);
 
 gameView.render();
 
